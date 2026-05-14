@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Breast Cancer Prediction System</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg,#dfe9f3,#ffffff);
+            min-height:100vh;
+            padding:40px;
+        }
+
+        .container{
+            max-width:1100px;
+            margin:auto;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            color:#1a237e;
+            margin-bottom:10px;
+            font-size:38px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#555;
+            margin-bottom:35px;
+            font-size:18px;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:18px;
+        }
+
+        .input-group{
+            display:flex;
+            flex-direction:column;
+        }
+
+        label{
+            margin-bottom:6px;
+            font-weight:bold;
+            color:#333;
+            font-size:14px;
+        }
+
+        input{
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:10px;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        input:focus{
+            border-color:#3949ab;
+            outline:none;
+            box-shadow:0 0 8px rgba(57,73,171,0.3);
+        }
+
+        .btn-container{
+            text-align:center;
+            margin-top:35px;
+        }
+
+        button{
+            background:#1a73e8;
+            color:white;
+            border:none;
+            padding:15px 40px;
+            font-size:18px;
+            border-radius:12px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        button:hover{
+            background:#0d47a1;
+        }
+
+        .result{
+            margin-top:35px;
+            padding:20px;
+            border-radius:12px;
+            text-align:center;
+            font-size:24px;
+            font-weight:bold;
+            background:#f1f8e9;
+            color:#2e7d32;
+        }
+
+        @media(max-width:768px){
+
+            .grid{
+                grid-template-columns:1fr;
+            }
+
+            h1{
+                font-size:28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Breast Cancer Prediction System</h1>
+
+    <p class="subtitle">
+        AI-powered healthcare prediction using Machine Learning and Flask
+    </p>
+
+    <form action="/predict" method="post">
+
+        <div class="grid">
+
+            <div class="input-group">
+                <label>Radius Mean</label>
+                <input type="text" name="f1" required>
+            </div>
+
+            <div class="input-group">
+                <label>Texture Mean</label>
+                <input type="text" name="f2" required>
+            </div>
+
+            <div class="input-group">
+                <label>Perimeter Mean</label>
+                <input type="text" name="f3" required>
+            </div>
+
+            <div class="input-group">
+                <label>Area Mean</label>
+                <input type="text" name="f4" required>
+            </div>
+
+            <div class="input-group">
+                <label>Smoothness Mean</label>
+                <input type="text" name="f5" required>
+            </div>
+
+            <div class="input-group">
+                <label>Compactness Mean</label>
+                <input type="text" name="f6" required>
+            </div>
+
+            <div class="input-group">
+                <label>Concavity Mean</label>
+                <input type="text" name="f7" required>
+            </div>
+
+            <div class="input-group">
+                <label>Concave Points Mean</label>
+                <input type="text" name="f8" required>
+            </div>
+
+            <div class="input-group">
+                <label>Symmetry Mean</label>
+                <input type="text" name="f9" required>
+            </div>
+
+            <div class="input-group">
+                <label>Fractal Dimension Mean</label>
+                <input type="text" name="f10" required>
+            </div>
+
+            <div class="input-group">
+                <label>Radius SE</label>
+                <input type="text" name="f11" required>
+            </div>
+
+            <div class="input-group">
+                <label>Texture SE</label>
+                <input type="text" name="f12" required>
+            </div>
+
+            <div class="input-group">
+                <label>Perimeter SE</label>
+                <input type="text" name="f13" required>
+            </div>
+
+            <div class="input-group">
+                <label>Area SE</label>
+                <input type="text" name="f14" required>
+            </div>
+
+            <div class="input-group">
+                <label>Smoothness SE</label>
+                <input type="text" name="f15" required>
+            </div>
+
+            <div class="input-group">
+                <label>Compactness SE</label>
+                <input type="text" name="f16" required>
+            </div>
+
+            <div class="input-group">
+                <label>Concavity SE</label>
+                <input type="text" name="f17" required>
+            </div>
+
+            <div class="input-group">
+                <label>Concave Points SE</label>
+                <input type="text" name="f18" required>
+            </div>
+
+            <div class="input-group">
+                <label>Symmetry SE</label>
+                <input type="text" name="f19" required>
+            </div>
+
+            <div class="input-group">
+                <label>Fractal Dimension SE</label>
+                <input type="text" name="f20" required>
+            </div>
+
+            <div class="input-group">
+                <label>Radius Worst</label>
+                <input type="text" name="f21" required>
+            </div>
+
+            <div class="input-group">
+                <label>Texture Worst</label>
+                <input type="text" name="f22" required>
+            </div>
+
+            <div class="input-group">
+                <label>Perimeter Worst</label>
+                <input type="text" name="f23" required>
+            </div>
+
+            <div class="input-group">
+                <label>Area Worst</label>
+                <input type="text" name="f24" required>
+            </div>
+
+            <div class="input-group">
+                <label>Smoothness Worst</label>
+                <input type="text" name="f25" required>
+            </div>
+
+            <div class="input-group">
+                <label>Compactness Worst</label>
+                <input type="text" name="f26" required>
+            </div>
+
+            <div class="input-group">
+                <label>Concavity Worst</label>
+                <input type="text" name="f27" required>
+            </div>
+
+            <div class="input-group">
+                <label>Concave Points Worst</label>
+                <input type="text" name="f28" required>
+            </div>
+
+            <div class="input-group">
+                <label>Symmetry Worst</label>
+                <input type="text" name="f29" required>
+            </div>
+
+            <div class="input-group">
+                <label>Fractal Dimension Worst</label>
+                <input type="text" name="f30" required>
+            </div>
+
+        </div>
+
+        <div class="btn-container">
+            <button type="submit">Predict Cancer</button>
+        </div>
+
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">
+        {{ prediction_text }}
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
