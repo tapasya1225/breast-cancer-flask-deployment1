@@ -1,11 +1,12 @@
+import os
 from flask import Flask, request, render_template
 import numpy as np
 import joblib
 
 app = Flask(__name__)
 
-# Load trained model
-model = joblib.load('models/breast_cancer_model.pkl')
+# Load trained model (file lives at the repo root, not in a "models/" folder)
+model = joblib.load('breast_cancer_model.pkl')
 
 
 @app.route('/')
@@ -15,15 +16,11 @@ def home():
 
 @app.route('/predict', methods=['POST'])
 def predict():
-
     features = [float(x) for x in request.form.values()]
-
     final_features = [np.array(features)]
 
     prediction = model.predict(final_features)
-
     prediction_proba = model.predict_proba(final_features)
-
     confidence = round(np.max(prediction_proba) * 100, 2)
 
     output = prediction[0]
@@ -42,4 +39,5 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    debug_mode = os.environ.get("FLASK_DEBUG", "False").lower() == "true"
+    app.run(debug=debug_mode)
